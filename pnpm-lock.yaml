@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@automapper/core':
+    specifier: ^8.7.7
+    version: 8.7.7
   '@automapper/nestjs':
     specifier: ^8.7.7
     version: 8.7.7(@automapper/core@8.7.7)(@nestjs/common@10.2.8)(@nestjs/core@10.2.8)
