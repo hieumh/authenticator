@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          Int      @id() @default(autoincrement())
+  name        String
+  start       DateTime
+  end         DateTime
+  description String
+
+  // Relationship with Subtask
+  children Subtask[]
+}
+
+model Subtask {
+  id     Int      @id() @default(autoincrement())
+  taskId Int
+  name   String
+  start  DateTime
+  end    DateTime
+
+  // Relationship with Step
+  children Step[]
+
+  // Relationship with Task
+  task Task @relation(fields: [taskId], references: [id])
+}
+
+model Step {
+  id            Int            @id() @default(autoincrement())
+  subTaskId     Int
+  name          String
+  start         DateTime
+  end           DateTime
+  status        EStepStatus
+  levelPriority ELevelPriority
+
+  // Relationship with Subtask
+  subTask Subtask @relation(fields: [subTaskId], references: [id])
+}
+
+model User {
+  id       Int    @id() @default(autoincrement())
+  username String
+  email    String
+  phone    String
+}
+
+enum ELevelPriority {
+  Do
+  Schedule
+  Delegate
+  Delete
+}
+
+enum EStepStatus {
+  inProgress
+  Doing
+  Done
+}
