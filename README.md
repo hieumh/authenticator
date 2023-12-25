@@ -1,79 +1,42 @@
-# Project Template: NestJS Backend with SQL and Prisma
+# Project Title
 
-## Overview
-
-This repository serves as a template for setting up a backend project using NestJS with a SQL database and Prisma. The project includes a basic structure, authentication, and authorization mechanisms, as well as integrations with Prisma for database operations.
+This project is a template for a NestJS backend with session-based, token-based, and OAuth authentication, and authorization using DDD architecture.
 
 ## Tech Stack
 
-- **NestJS:** A progressive Node.js framework for building efficient and scalable server-side applications.
-- **SQL Database:** Choose a SQL database of your preference (e.g., PostgreSQL, MySQL).
-- **Prisma:** A modern database toolkit that simplifies database access and management.
-
-## Features
-
-- **User Authentication and Authorization:** Implement user authentication and authorization using NestJS Passport and JWT.
-- **Database Integration with Prisma:** Utilize Prisma for type-safe database access, migrations, and schema management.
-- **Scalable Project Structure:** Follow a modular and scalable project structure for easy maintenance and future expansion.
+- NestJS
+- TypeScript
+- Prisma
+- PostgreSQL
 
 ## Getting Started
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/your-nestjs-sql-prisma-template.git
-   cd your-nestjs-sql-prisma-template
-   ```
+1. Clone the repository.
+2. Install dependencies with `npm install`.
+3. Create a `.env` file with the following environment variables:
+    - `DATABASE_URL`: The URL of your PostgreSQL database.
+4. Run the application with `npm run start`.
 
-### API Documentation:
+## Authentication
 
-Access the API documentation at http://localhost:3000/api/docs for detailed information about available endpoints.
-Project Structure
+This project uses NestJS's built-in `@nestjs/passport` module to handle authentication. It supports session-based, token-based, and OAuth authentication strategies.
 
-### Install Dependencies:
+### Session-based Authentication
 
-```
-bash
-npm install
-```
+Session-based authentication is implemented using NestJS's built-in `@nestjs/session` module. The `SessionSerializer` class is responsible for serializing and deserializing user sessions.
 
-### Set Up Database:
+### Token-based Authentication
 
-Configure your SQL database connection in the prisma/schema.prisma file.
-Run Prisma migrations to create the database schema:
+Token-based authentication is implemented using JSON Web Tokens (JWTs). The `JwtStrategy` class is responsible for verifying JWTs.
 
-```
-npx prisma migrate dev
-```
+### OAuth Authentication
 
-### Start the Development Server:
+OAuth authentication is implemented using NestJS's built-in `@nestjs/passport` module. The `OAuth2Strategy` class is responsible for handling OAuth authentication.
 
-npm run start:dev
+## Authorization
 
-### API Documentation:
+This project uses NestJS's built-in `@nestjs/authorization` module to handle authorization. It supports role-based and resource-based authorization.
 
-Access the API documentation at http://localhost:3000/api/docs for detailed information about available endpoints.
+## License
 
-## Project Structure
-
-```
-/src
-|-- auth
-| |-- auth.controller.ts
-| |-- auth.guard.ts
-| |-- auth.service.ts
-| |-- jwt.strategy.ts
-| |-- local-auth.guard.ts
-|-- user
-| |-- user.controller.ts
-| |-- user.entity.ts
-| |-- user.module.ts
-| |-- user.service.ts
-|-- app.controller.ts
-|-- app.module.ts
-```
-
-## Configuration
-
-Environment Variables:
-Set the necessary environment variables in a .env file for configuration settings such as database connection details, JWT secret, etc.
-
+This project is licensed under the MIT License - see the LICENSE.md file for details.
