@@ -10,6 +10,6 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
   constructor(private readonly userService: UserService) {}
 
   execute(command: CreateUserCommand): Promise<User> {
-    return this.userService.create(command.user);
+    return this.userService.create({ ...command.user } as User);
   }
 }
