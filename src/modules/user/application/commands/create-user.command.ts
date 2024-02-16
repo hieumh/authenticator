@@ -1,5 +1,5 @@
-import { User } from '@prisma/client';
+import { IAuthenticationUser } from 'src/shared/interfaces/user.interface';
 
 export class CreateUserCommand {
-  constructor(public readonly user: User) {}
+  constructor(public readonly user: IAuthenticationUser) {}
 }

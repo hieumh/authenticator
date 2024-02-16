@@ -8,19 +8,23 @@ import { FindUserHandler } from '../application/queries/find-user.handler';
 import { RemoveUserHandler } from '../application/commands/remove-user.handler';
 import { UpdateUserHandler } from '../application/commands/update-user.handler';
 import { CqrsModule } from '@nestjs/cqrs';
+import { FindUserByIdHandler } from '../application/queries/find-user-by-id.handler';
+import { FindUserByNameHandler } from '../application/queries/find-user-by-name.handler';
 
-const cqrsHandler = [
+export const cqrsHandler = [
   CreateUserHandler,
   RemoveUserHandler,
   UpdateUserHandler,
 
   FindUserHandler,
+  FindUserByIdHandler,
+  FindUserByNameHandler,
 ];
 
 @Module({
   imports: [PrismaModule, CqrsModule],
   controllers: [UserController],
   providers: [UserService, UserRepository, ...cqrsHandler],
-  exports: [UserService],
+  exports: [UserService, ...cqrsHandler],
 })
 export class UserModule {}

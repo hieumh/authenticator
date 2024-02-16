@@ -14,6 +14,14 @@ export class UserService {
     return this.userRepository.find(id);
   }
 
+  findByName(username: string): Promise<User> {
+    return this.userRepository.findByName(username);
+  }
+
+  findById(userId: number): Promise<User> {
+    return this.userRepository.findById(userId);
+  }
+
   update(user: User): Promise<User> {
     return this.userRepository.update(user);
   }

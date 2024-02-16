@@ -13,6 +13,14 @@ export class UserRepository {
     return this.prismaClient.user.findFirst({ where: { id } });
   }
 
+  findByName(username: string): Promise<User> {
+    return this.prismaClient.user.findFirst({ where: { username } });
+  }
+
+  findById(userId: number): Promise<User> {
+    return this.prismaClient.user.findFirst({ where: { id: userId } });
+  }
+
   update(user: User): Promise<User> {
     return this.prismaClient.user.update({
       where: { id: user.id },
